@@ -1,0 +1,17 @@
+# Root .gitignore for Market-Map
+# Ignore OS and editor files
+.DS_Store
+Thumbs.db
+*.log
+
+# Ignore environment files
+.env
+.env.*
+
+# Ignore node_modules in all subfolders
+**/node_modules/
+
+# Ignore build and coverage outputs
+**/build/
+**/dist/
+**/coverage/
