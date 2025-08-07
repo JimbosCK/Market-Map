@@ -17,7 +17,6 @@ const AddMarketForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [schedule, setSchedule] = useState([]);
   const [roadData, setRoadData] = useState([]);
-  const [location, setLocation] = useState(null);
   const featureGroupRef = useRef();
 
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -41,7 +40,7 @@ const AddMarketForm = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (roadData.length > 0) {
-      onSubmit({ name, schedule, roadData, location });
+      onSubmit({ name, schedule, roadData });
     } else {
       alert("Please draw at least one road and add a market location.");
     }
