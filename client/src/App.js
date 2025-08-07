@@ -28,7 +28,7 @@ function App() {
   const fetchMarkets = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/markets');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/markets`);
       setMarkets(response.data);
     } catch (error) {
       console.error('Error fetching markets:', error);
@@ -75,7 +75,7 @@ function App() {
         location: location
       };
 
-      await axios.post('http://localhost:5000/api/markets', payload);
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/markets`, payload);
       alert('Market submitted for review!');
 
       fetchMarkets();
