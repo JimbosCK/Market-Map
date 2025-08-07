@@ -46,6 +46,7 @@ function App() {
   const [markets, setMarkets] = useState([]);
   const [selectedMarket, setSelectedMarket] = useState(null);
   const [isLoading, setIsLoading] = useState(false); // New state for loading
+  const [showAddMarket, setShowAddMarket] = useState(false);
   const position = [37.9838, 23.7275];
 
   const fetchMarkets = async () => {
@@ -112,7 +113,13 @@ function App() {
   return (
     <div className="App">
       <h1>Street Market Map</h1>
-      <AddMarketForm onSubmit={handleFormSubmit} />
+      <button
+        onClick={() => setShowAddMarket((prev) => !prev)}
+        style={{ marginBottom: '20px' }}
+      >
+        {showAddMarket ? 'Hide Add Market Form' : 'Add New Market'}
+      </button>
+      {showAddMarket && <AddMarketForm onSubmit={handleFormSubmit} />}
       {isLoading ? (
         <div className="loading-state">Loading map data...</div>
       ) : (
@@ -121,7 +128,6 @@ function App() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          
           {markets.map((market) => (
             <Marker
               key={market._id}
@@ -138,10 +144,8 @@ function App() {
               </Popup>
             </Marker>
           ))}
-
           {selectedMarket && selectedMarket.closedRoads.map((road, index) => {
             const pathCoordinates = road.path.coordinates.map(coord => [coord[1], coord[0]]);
-            
             return (
               <Polyline
                 key={index}
