@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import AddMarketForm from './components/AddMarketForm';
 
@@ -114,8 +115,9 @@ function App() {
     <div className="App">
       <h1>Street Market Map</h1>
       <button
+        className={`btn ${showAddMarket ? 'btn-secondary' : 'btn-primary'} mb-3`}
         onClick={() => setShowAddMarket((prev) => !prev)}
-        style={{ marginBottom: '20px' }}
+        style={{ minWidth: '180px', fontWeight: 500 }}
       >
         {showAddMarket ? 'Hide Add Market Form' : 'Add New Market'}
       </button>
