@@ -77,8 +77,8 @@ function App() {
 
       await axios.post(`${process.env.REACT_APP_API_URL}/api/markets`, payload);
       alert('Market submitted for review!');
-
-      fetchMarkets();
+      setShowAddMarket(false);
+      fetchMarkets(); 
 
     } catch (error) {
       console.error('Error submitting market:', error);
